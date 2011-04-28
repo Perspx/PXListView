@@ -522,6 +522,11 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 	[oldCell setDropHighlight: PXListViewDropNowhere];
 	
 	[self setShowsDropHighlight: NO];
+    
+    for(PXListViewCell *cell in [self visibleCells])
+    {
+        [cell setDropHighlight:PXListViewDropNowhere];
+    }
 }
 
 
