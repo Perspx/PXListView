@@ -10,11 +10,18 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C53B006E138D6FE90026A20F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53B006D138D6FE90026A20F /* Cocoa.framework */; };
-		C53B0074138D6FEA0026A20F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C53B0072138D6FEA0026A20F /* InfoPlist.strings */; };
 		C53B007A138D700B0026A20F /* PXListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D27858D111B1B5EA00F1CF30 /* PXListView.m */; };
 		C53B007E138D700B0026A20F /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */; };
 		C53B0081138D700B0026A20F /* PXListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D27858D411B1B5FC00F1CF30 /* PXListViewCell.m */; };
 		C53B0084138D700B0026A20F /* PXListDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D278592311B1BA6C00F1CF30 /* PXListDocumentView.m */; };
+		C53B00AB138D8D860026A20F /* PXListView.h in Headers */ = {isa = PBXBuildFile; fileRef = D27858D011B1B5EA00F1CF30 /* PXListView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53B00AC138D8D860026A20F /* PXListView+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D279A64311B4E95600771B2A /* PXListView+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C53B00AD138D8D860026A20F /* PXListViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D27858D711B1B6D400F1CF30 /* PXListViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53B00AE138D8D860026A20F /* PXListView+UserInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = D25DDA7D133F58A10086783B /* PXListView+UserInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53B00AF138D8D860026A20F /* PXListViewDropHighlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 55B9AC9E11EA384C00416532 /* PXListViewDropHighlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53B00B0138D8D860026A20F /* PXListViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D27858D311B1B5FC00F1CF30 /* PXListViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53B00B1138D8D860026A20F /* PXListViewCell+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D279A6DD11B4EFCD00771B2A /* PXListViewCell+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C53B00B2138D8D860026A20F /* PXListDocumentView.h in Headers */ = {isa = PBXBuildFile; fileRef = D278592211B1BA6C00F1CF30 /* PXListDocumentView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D25DDA7F133F58A20086783B /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */; };
 		D26669CB11B1B2F1007597F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D26669CA11B1B2F1007597F1 /* AppDelegate.m */; };
 		D26669D211B1B302007597F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D26669CE11B1B302007597F1 /* InfoPlist.strings */; };
@@ -219,6 +226,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53B00AB138D8D860026A20F /* PXListView.h in Headers */,
+				C53B00AD138D8D860026A20F /* PXListViewDelegate.h in Headers */,
+				C53B00AE138D8D860026A20F /* PXListView+UserInteraction.h in Headers */,
+				C53B00AF138D8D860026A20F /* PXListViewDropHighlight.h in Headers */,
+				C53B00B0138D8D860026A20F /* PXListViewCell.h in Headers */,
+				C53B00B2138D8D860026A20F /* PXListDocumentView.h in Headers */,
+				C53B00AC138D8D860026A20F /* PXListView+Private.h in Headers */,
+				C53B00B1138D8D860026A20F /* PXListViewCell+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +314,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53B0074138D6FEA0026A20F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +544,7 @@
 				C53B0078138D6FEA0026A20F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
