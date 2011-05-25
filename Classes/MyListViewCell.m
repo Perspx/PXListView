@@ -47,6 +47,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+#pragma unused(dirtyRect)
 	if([self isSelected]) {
 		[[NSColor selectedControlColor] set];
 	}

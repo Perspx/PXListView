@@ -74,11 +74,14 @@
 
 - (CGFloat)listView:(PXListView*)aListView heightOfRow:(NSUInteger)row
 {
+#pragma unused(aListView)
+#pragma unused(row)
 	return 50;
 }
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
+#pragma unused(aNotification)
     NSLog(@"Selection changed");
 }
 
@@ -86,6 +89,8 @@
 // The following are only needed for drag'n drop:
 - (BOOL)listView:(PXListView*)aListView writeRowsWithIndexes:(NSIndexSet*)rowIndexes toPasteboard:(NSPasteboard*)dragPasteboard
 {
+#pragma unused(aListView)
+#pragma unused(rowIndexes)
 	// +++ Actually drag the items, not just dummy data.
 	[dragPasteboard declareTypes: [NSArray arrayWithObjects: NSStringPboardType, nil] owner: self];
 	[dragPasteboard setString: @"Just Testing" forType: NSStringPboardType];
@@ -96,11 +101,16 @@
 - (NSDragOperation)listView:(PXListView*)aListView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSUInteger)row
 							proposedDropHighlight:(PXListViewDropHighlight)dropHighlight;
 {
+#pragma unused(aListView)
+#pragma unused(dropHighlight)
+#pragma unused(info)
+#pragma unused(row)
 	return NSDragOperationCopy;
 }
 
 - (IBAction) reloadTable:(id)sender
 {
+#pragma unused(sender)
 	[listView reloadData];
 }
 

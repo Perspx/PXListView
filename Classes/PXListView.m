@@ -108,6 +108,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 -(void)reloadRowAtIndex:(NSInteger)inIndex;
 {
+#pragma unused(inIndex)
     [self cacheCellLayout];
     [self layoutCells];
     //[self layoutCellsForResizeEvent];
@@ -350,6 +351,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)selectAll:(id)sender
 {
+#pragma unused(sender)
 	if(_allowsMultipleSelection) {
 		[self setSelectedRows:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _numberOfRows)]];
 	}
@@ -357,6 +359,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)deselectAll:(id)sender
 {
+#pragma unused(sender)
 	[self setSelectedRows:[NSIndexSet indexSet]];
 }
 
@@ -552,6 +555,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)contentViewBoundsDidChange:(NSNotification *)notification
 {
+#pragma unused(notification)
 	[self updateCells];
 }
 
@@ -657,6 +661,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 -(void)windowSizing:(NSNotification *)inNot
 {
+#pragma unused(inNot)
     [self layoutCellsForResizeEvent];
 }
 

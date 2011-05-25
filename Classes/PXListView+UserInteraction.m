@@ -112,6 +112,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)moveUp:(id)sender
 {
+#pragma unused(sender)
     if([_selectedRows count]>0) {
         NSUInteger firstIndex = [_selectedRows firstIndex];
         
@@ -126,6 +127,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)moveDown:(id)sender
 {
+#pragma unused(sender)
     if([_selectedRows count]>0) {
         NSUInteger lastIndex = [_selectedRows lastIndex];
         
