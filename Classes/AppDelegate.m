@@ -14,7 +14,7 @@
 #pragma mark Constants
 
 #define LISTVIEW_CELL_IDENTIFIER		@"MyListViewCell"
-#define NUM_EXAMPLE_ITEMS				10
+#define NUM_EXAMPLE_ITEMS				1000
 
 
 @implementation AppDelegate
