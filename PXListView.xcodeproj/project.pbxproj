@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C53B006E138D6FE90026A20F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53B006D138D6FE90026A20F /* Cocoa.framework */; };
+		C53B0074138D6FEA0026A20F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C53B0072138D6FEA0026A20F /* InfoPlist.strings */; };
+		C53B007A138D700B0026A20F /* PXListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D27858D111B1B5EA00F1CF30 /* PXListView.m */; };
+		C53B007E138D700B0026A20F /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */; };
+		C53B0081138D700B0026A20F /* PXListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D27858D411B1B5FC00F1CF30 /* PXListViewCell.m */; };
+		C53B0084138D700B0026A20F /* PXListDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D278592311B1BA6C00F1CF30 /* PXListDocumentView.m */; };
 		D25DDA7F133F58A20086783B /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */; };
 		D26669CB11B1B2F1007597F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D26669CA11B1B2F1007597F1 /* AppDelegate.m */; };
 		D26669D211B1B302007597F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D26669CE11B1B302007597F1 /* InfoPlist.strings */; };
@@ -30,6 +36,11 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		55B9AC9E11EA384C00416532 /* PXListViewDropHighlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXListViewDropHighlight.h; path = Classes/PXListViewDropHighlight.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* PXListView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PXListView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53B006C138D6FE90026A20F /* PXListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PXListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53B006D138D6FE90026A20F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C53B0071138D6FEA0026A20F /* PXListView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PXListView-Info.plist"; sourceTree = "<group>"; };
+		C53B0073138D6FEA0026A20F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C53B0075138D6FEA0026A20F /* PXListView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PXListView-Prefix.pch"; sourceTree = "<group>"; };
 		D25DDA7D133F58A10086783B /* PXListView+UserInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PXListView+UserInteraction.h"; path = "Classes/PXListView+UserInteraction.h"; sourceTree = "<group>"; };
 		D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PXListView+UserInteraction.m"; path = "Classes/PXListView+UserInteraction.m"; sourceTree = "<group>"; };
 		D26669C911B1B2F1007597F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +72,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C53B0068138D6FE90026A20F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C53B006E138D6FE90026A20F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -86,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* PXListView.app */,
+				C53B006C138D6FE90026A20F /* PXListView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,9 +137,21 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				C53B006D138D6FE90026A20F /* Cocoa.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C53B0070138D6FEA0026A20F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C53B0071138D6FEA0026A20F /* PXListView-Info.plist */,
+				C53B0072138D6FEA0026A20F /* InfoPlist.strings */,
+				C53B0075138D6FEA0026A20F /* PXListView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = PXListView;
 			sourceTree = "<group>";
 		};
 		D25DDA7A133F568F0086783B /* PXListView */ = {
@@ -133,6 +165,7 @@
 				D25DDA7E133F58A10086783B /* PXListView+UserInteraction.m */,
 				D279A68911B4ECAB00771B2A /* Cells */,
 				D278592911B1BA7900F1CF30 /* Misc */,
+				C53B0070138D6FEA0026A20F /* Supporting Files */,
 			);
 			name = PXListView;
 			sourceTree = "<group>";
@@ -181,10 +214,20 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C53B0069138D6FE90026A20F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* PXListView */ = {
+		8D1107260486CEB800E47090 /* Demo App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PXListView" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Demo App" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -194,11 +237,29 @@
 			);
 			dependencies = (
 			);
-			name = PXListView;
+			name = "Demo App";
 			productInstallPath = "$(HOME)/Applications";
 			productName = PXListView;
 			productReference = 8D1107320486CEB800E47090 /* PXListView.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C53B006B138D6FE90026A20F /* PXListView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C53B0076138D6FEA0026A20F /* Build configuration list for PBXNativeTarget "PXListView" */;
+			buildPhases = (
+				C53B0067138D6FE90026A20F /* Sources */,
+				C53B0068138D6FE90026A20F /* Frameworks */,
+				C53B0069138D6FE90026A20F /* Headers */,
+				C53B006A138D6FE90026A20F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PXListView;
+			productName = PXListView;
+			productReference = C53B006C138D6FE90026A20F /* PXListView.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -216,7 +277,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* PXListView */,
+				8D1107260486CEB800E47090 /* Demo App */,
+				C53B006B138D6FE90026A20F /* PXListView */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +292,14 @@
 				D26669D311B1B302007597F1 /* MainMenu.xib in Resources */,
 				D279A64411B4E95600771B2A /* PXListView+Private.h in Resources */,
 				D2BED6C01320E08D00E1D0D3 /* MyListViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C53B006A138D6FE90026A20F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C53B0074138D6FEA0026A20F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,9 +320,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C53B0067138D6FE90026A20F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C53B007A138D700B0026A20F /* PXListView.m in Sources */,
+				C53B007E138D700B0026A20F /* PXListView+UserInteraction.m in Sources */,
+				C53B0081138D700B0026A20F /* PXListViewCell.m in Sources */,
+				C53B0084138D700B0026A20F /* PXListDocumentView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C53B0072138D6FEA0026A20F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C53B0073138D6FEA0026A20F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D26669CE11B1B302007597F1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -367,10 +456,56 @@
 			};
 			name = Release;
 		};
+		C53B0077138D6FEA0026A20F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PXListView/PXListView-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "PXListView/PXListView-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		C53B0078138D6FEA0026A20F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PXListView/PXListView-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "PXListView/PXListView-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PXListView" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Demo App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -387,6 +522,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C53B0076138D6FEA0026A20F /* Build configuration list for PBXNativeTarget "PXListView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C53B0077138D6FEA0026A20F /* Debug */,
+				C53B0078138D6FEA0026A20F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
