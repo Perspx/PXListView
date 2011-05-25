@@ -559,27 +559,6 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 	[self updateCells];
 }
 
-- (void)scrollToRow:(NSUInteger)row
-{
-    if(row >= _numberOfRows) {
-        return;
-    }
-    
-    // Use minimal scroll necessary, so we don't force the selection to upper left of window:
-	NSRect visibleRect = [self documentVisibleRect];
-	NSRect rowRect = [self rectOfRow:row];
-	
-	NSPoint newScrollPoint = rowRect.origin;
-    
-    //Have we over-scrolled?
-	if(NSMaxY(rowRect) > NSMaxY(visibleRect)) {
-		newScrollPoint.y = _totalHeight - NSHeight(visibleRect);
-    }
-	
-	[[self contentView] scrollToPoint:newScrollPoint];
-	[self reflectScrolledClipView:[self contentView]];
-}
-
 - (void)scrollRowToVisible:(NSUInteger)row
 {
 	if(row >= _numberOfRows) {
@@ -596,11 +575,11 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 	
 	NSPoint newScrollPoint = rowRect.origin;
     
-    //Have we over-scrolled?
-	if(NSMaxY(rowRect) > NSMaxY(visibleRect)) {
-		newScrollPoint.y = _totalHeight - NSHeight(visibleRect);
-    }
-	
+    if(NSMaxY(visibleRect) > NSMaxY(rowRect))
+        newScrollPoint.y = NSMinY(rowRect);
+    else
+        newScrollPoint.y = NSMinY(visibleRect) - (NSMaxY(visibleRect) - NSMinY(rowRect)) + NSHeight(rowRect);
+
 	[[self contentView] scrollToPoint:newScrollPoint];
 	[self reflectScrolledClipView:[self contentView]];
 }

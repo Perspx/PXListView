@@ -11,13 +11,6 @@
 #import "PXListView+UserInteraction.h"
 #import "PXListView+Private.h"
 
-// Apple sadly doesn't provide CGFloat variants of these:
-#if CGFLOAT_IS_DOUBLE
-#define CGFLOATABS(n)	fabs(n)
-#else
-#define CGFLOATABS(n)	fabsf(n)
-#endif
-
 // This is a renamed copy of UKIsDragStart from <http://github.com/uliwitness/UliKit>:
 static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval theTimeout )
 {

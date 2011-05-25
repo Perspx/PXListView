@@ -72,7 +72,6 @@
 - (void)deselectRows;
 - (void)selectRowIndexes:(NSIndexSet*)rows byExtendingSelection:(BOOL)doExtend;
 
-- (void)scrollToRow:(NSUInteger)row;
 - (void)scrollRowToVisible:(NSUInteger)row;
 
 @end
