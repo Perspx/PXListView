@@ -40,4 +40,6 @@ typedef NSInteger PXIsDragStartResult;
 - (void)contentViewBoundsDidChange:(NSNotification*)notification;
 -(void)layoutCellsForResizeEvent;
 
+- (void)windowSizing:(NSNotification *)inNot;
+
 @end
