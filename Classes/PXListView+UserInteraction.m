@@ -212,7 +212,6 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)handleMouseDownOutsideCells: (NSEvent*)theEvent
 {
-#pragma unused(theEvent)
     //[[self window] makeFirstResponder: self];
     //
 	if( _allowsEmptySelection )
