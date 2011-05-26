@@ -237,6 +237,9 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (BOOL)attemptDragWithMouseDown:(NSEvent*)theEvent inCell:(PXListViewCell*)theCell
 {
+    if(!_dragSupported)
+        return NO;
+    
 	PXIsDragStartResult	dragResult = PXIsDragStart( theEvent, 0.0 );
 	if( dragResult != PXIsDragStartMouseReleased /*&& (_verticalMotionCanBeginDrag || dragResult != PXIsDragStartMouseMovedVertically)*/ )	// Was a drag, not a click? Cool!
 	{

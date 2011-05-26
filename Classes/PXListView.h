@@ -38,6 +38,7 @@
 	BOOL _allowsMultipleSelection;
     NSInteger _lastSelectedRow;
     
+    BOOL _dragSupported;
 	BOOL _verticalMotionCanBeginDrag;
     
     BOOL _usesLiveResize;
@@ -54,7 +55,9 @@
 
 @property (nonatomic, assign) BOOL allowsEmptySelection;
 @property (nonatomic, assign) BOOL allowsMultipleSelection;
+
 @property (nonatomic, assign) BOOL verticalMotionCanBeginDrag;
+@property (nonatomic, assign) BOOL dragSupported;
 
 @property (nonatomic, assign) CGFloat cellSpacing;
 @property (nonatomic, assign) BOOL usesLiveResize;

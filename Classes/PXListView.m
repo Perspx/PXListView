@@ -21,6 +21,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 @synthesize cellSpacing = _cellSpacing;
 @synthesize allowsMultipleSelection = _allowsMultipleSelection;
 @synthesize allowsEmptySelection = _allowsEmptySelection;
+@synthesize dragSupported = _dragSupported;
 @synthesize verticalMotionCanBeginDrag = _verticalMotionCanBeginDrag;
 @synthesize usesLiveResize = _usesLiveResize;
 
@@ -36,6 +37,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		_selectedRows = [[NSMutableIndexSet alloc] init];
 		_allowsEmptySelection = YES;
         _usesLiveResize = YES;
+        _dragSupported = YES;
 	}
 	
 	return self;
@@ -50,6 +52,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		_selectedRows = [[NSMutableIndexSet alloc] init];
 		_allowsEmptySelection = YES;
         _usesLiveResize = YES;
+        _dragSupported = YES;
 	}
 	
 	return self;
