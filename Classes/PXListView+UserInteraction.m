@@ -24,7 +24,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 	NSAutoreleasePool	*pool = nil;
 	while( ([expireTime timeIntervalSinceReferenceDate] -[NSDate timeIntervalSinceReferenceDate]) > 0 )
 	{
-		[pool release];
+		[pool drain];
 		pool = [[NSAutoreleasePool alloc] init];
 		
 		NSEvent*	currEvent = [NSApp nextEventMatchingMask: NSLeftMouseUpMask | NSRightMouseUpMask | NSOtherMouseUpMask
@@ -38,7 +38,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 				case NSRightMouseUp:
 				case NSOtherMouseUp:
 				{
-					[pool release];
+					[pool drain];
 					return PXIsDragStartMouseReleased;	// Mouse released within the wait time.
 					break;
 				}
@@ -52,7 +52,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 					CGFloat	yMouseMovement = CGFLOATABS(newPos.y -startPos.y);
 					if( xMouseMovement > 2 or yMouseMovement > 2 )
 					{
-						[pool release];
+						[pool drain];
 						return (xMouseMovement > yMouseMovement) ? PXIsDragStartMouseMovedHorizontally : PXIsDragStartMouseMovedVertically;	// Mouse moved within the wait time, probably a drag!
 					}
 					break;
@@ -62,7 +62,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 		
 	}
 	
-	[pool release];
+	[pool drain];
 	return PXIsDragStartTimedOut;	// If they held the mouse that long, they probably wanna drag.
 }
 
