@@ -13,6 +13,8 @@
 #import "PXListViewCell+Private.h"
 #import "PXListView+UserInteraction.h"
 
+#import "PXListDocumentView.h"
+
 NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 
@@ -24,6 +26,10 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 @synthesize dragSupported = _dragSupported;
 @synthesize verticalMotionCanBeginDrag = _verticalMotionCanBeginDrag;
 @synthesize usesLiveResize = _usesLiveResize;
+
+- (PXListDocumentView *)documentView {
+    return [super documentView];
+}
 
 #pragma mark -
 #pragma mark Init/Dealloc
@@ -508,7 +514,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 - (void)layoutCells
 {	
 	//Set the frames of the cells
-	for(id cell in _visibleCells)
+	for(PXListViewCell *cell in _visibleCells)
 	{
 		NSInteger row = [cell row];
 		[cell setFrame:[self rectOfRow:row]];

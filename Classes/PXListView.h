@@ -10,7 +10,7 @@
 
 #import "PXListViewDelegate.h"
 #import "PXListViewCell.h"
-
+#import "PXListDocumentView.h"
 
 #if DEBUG
 #define PXLog(...)	NSLog(__VA_ARGS__)
@@ -61,6 +61,8 @@
 
 @property (nonatomic, assign) CGFloat cellSpacing;
 @property (nonatomic, assign) BOOL usesLiveResize;
+
+- (PXListDocumentView *)documentView;
 
 - (void)reloadData;
 -(void)reloadRowAtIndex:(NSInteger)inIndex;
