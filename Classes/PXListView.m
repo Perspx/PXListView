@@ -347,7 +347,9 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		{
 			for(NSUInteger i = NSMaxRange(_currentRange); i > NSMaxRange(visibleRange); i--)
 			{
-				[self enqueueCell:[_visibleCells lastObject]];
+                if([_visibleCells lastObject]) {
+                    [self enqueueCell:[_visibleCells lastObject]];
+                }
 			}
 		}
 	}
