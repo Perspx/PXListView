@@ -55,7 +55,7 @@
 
 - (id)initWithReusableIdentifier:(NSString*)identifier
 {
-	if((self = [super initWithFrame: NSZeroRect]))
+	if((self = [self initWithFrame: NSZeroRect]))
 	{
 		_reusableIdentifier = [identifier copy];
 	}
@@ -66,7 +66,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	if((self = [super initWithCoder: aDecoder]))
+	if((self = [self initWithCoder: aDecoder]))
 	{
 		_reusableIdentifier = NSStringFromClass([self class]);
 	}
@@ -108,6 +108,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+#pragma unused(dirtyRect)
 	if(_dropHighlight == PXListViewDropAbove)
 	{
 		[[NSColor alternateSelectedControlColor] set];

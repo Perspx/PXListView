@@ -13,6 +13,8 @@
 #import "PXListViewCell+Private.h"
 #import "PXListView+UserInteraction.h"
 
+#import "PXListDocumentView.h"
+
 NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 
@@ -21,8 +23,13 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 @synthesize cellSpacing = _cellSpacing;
 @synthesize allowsMultipleSelection = _allowsMultipleSelection;
 @synthesize allowsEmptySelection = _allowsEmptySelection;
+@synthesize dragSupported = _dragSupported;
 @synthesize verticalMotionCanBeginDrag = _verticalMotionCanBeginDrag;
 @synthesize usesLiveResize = _usesLiveResize;
+
+- (PXListDocumentView *)documentView {
+    return [super documentView];
+}
 
 #pragma mark -
 #pragma mark Init/Dealloc
@@ -36,6 +43,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		_selectedRows = [[NSMutableIndexSet alloc] init];
 		_allowsEmptySelection = YES;
         _usesLiveResize = YES;
+        _dragSupported = YES;
 	}
 	
 	return self;
@@ -50,6 +58,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		_selectedRows = [[NSMutableIndexSet alloc] init];
 		_allowsEmptySelection = YES;
         _usesLiveResize = YES;
+        _dragSupported = YES;
 	}
 	
 	return self;
@@ -108,6 +117,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 -(void)reloadRowAtIndex:(NSInteger)inIndex;
 {
+#pragma unused(inIndex)
     [self cacheCellLayout];
     [self layoutCells];
     //[self layoutCellsForResizeEvent];
@@ -337,7 +347,9 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 		{
 			for(NSUInteger i = NSMaxRange(_currentRange); i > NSMaxRange(visibleRange); i--)
 			{
-				[self enqueueCell:[_visibleCells lastObject]];
+                if([_visibleCells lastObject]) {
+                    [self enqueueCell:[_visibleCells lastObject]];
+                }
 			}
 		}
 	}
@@ -350,6 +362,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)selectAll:(id)sender
 {
+#pragma unused(sender)
 	if(_allowsMultipleSelection) {
 		[self setSelectedRows:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _numberOfRows)]];
 	}
@@ -357,6 +370,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)deselectAll:(id)sender
 {
+#pragma unused(sender)
 	[self setSelectedRows:[NSIndexSet indexSet]];
 }
 
@@ -502,7 +516,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 - (void)layoutCells
 {	
 	//Set the frames of the cells
-	for(id cell in _visibleCells)
+	for(PXListViewCell *cell in _visibleCells)
 	{
 		NSInteger row = [cell row];
 		[cell setFrame:[self rectOfRow:row]];
@@ -552,28 +566,8 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 - (void)contentViewBoundsDidChange:(NSNotification *)notification
 {
+#pragma unused(notification)
 	[self updateCells];
-}
-
-- (void)scrollToRow:(NSUInteger)row
-{
-    if(row >= _numberOfRows) {
-        return;
-    }
-    
-    // Use minimal scroll necessary, so we don't force the selection to upper left of window:
-	NSRect visibleRect = [self documentVisibleRect];
-	NSRect rowRect = [self rectOfRow:row];
-	
-	NSPoint newScrollPoint = rowRect.origin;
-    
-    //Have we over-scrolled?
-	if(NSMaxY(rowRect) > NSMaxY(visibleRect)) {
-		newScrollPoint.y = _totalHeight - NSHeight(visibleRect);
-    }
-	
-	[[self contentView] scrollToPoint:newScrollPoint];
-	[self reflectScrolledClipView:[self contentView]];
 }
 
 - (void)scrollRowToVisible:(NSUInteger)row
@@ -592,11 +586,11 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 	
 	NSPoint newScrollPoint = rowRect.origin;
     
-    //Have we over-scrolled?
-	if(NSMaxY(rowRect) > NSMaxY(visibleRect)) {
-		newScrollPoint.y = _totalHeight - NSHeight(visibleRect);
-    }
-	
+    if(NSMaxY(visibleRect) > NSMaxY(rowRect))
+        newScrollPoint.y = NSMinY(rowRect);
+    else
+        newScrollPoint.y = NSMinY(visibleRect) - (NSMaxY(visibleRect) - NSMinY(rowRect)) + NSHeight(rowRect);
+
 	[[self contentView] scrollToPoint:newScrollPoint];
 	[self reflectScrolledClipView:[self contentView]];
 }
@@ -657,6 +651,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 
 -(void)windowSizing:(NSNotification *)inNot
 {
+#pragma unused(inNot)
     [self layoutCellsForResizeEvent];
 }
 

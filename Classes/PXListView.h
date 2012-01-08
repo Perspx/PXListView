@@ -10,7 +10,7 @@
 
 #import "PXListViewDelegate.h"
 #import "PXListViewCell.h"
-
+#import "PXListDocumentView.h"
 
 #if DEBUG
 #define PXLog(...)	NSLog(__VA_ARGS__)
@@ -38,6 +38,7 @@
 	BOOL _allowsMultipleSelection;
     NSInteger _lastSelectedRow;
     
+    BOOL _dragSupported;
 	BOOL _verticalMotionCanBeginDrag;
     
     BOOL _usesLiveResize;
@@ -54,10 +55,14 @@
 
 @property (nonatomic, assign) BOOL allowsEmptySelection;
 @property (nonatomic, assign) BOOL allowsMultipleSelection;
+
 @property (nonatomic, assign) BOOL verticalMotionCanBeginDrag;
+@property (nonatomic, assign) BOOL dragSupported;
 
 @property (nonatomic, assign) CGFloat cellSpacing;
 @property (nonatomic, assign) BOOL usesLiveResize;
+
+- (PXListDocumentView *)documentView;
 
 - (void)reloadData;
 -(void)reloadRowAtIndex:(NSInteger)inIndex;
@@ -72,7 +77,6 @@
 - (void)deselectRows;
 - (void)selectRowIndexes:(NSIndexSet*)rows byExtendingSelection:(BOOL)doExtend;
 
-- (void)scrollToRow:(NSUInteger)row;
 - (void)scrollRowToVisible:(NSUInteger)row;
 
 @end

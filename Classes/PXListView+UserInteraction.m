@@ -11,13 +11,6 @@
 #import "PXListView+UserInteraction.h"
 #import "PXListView+Private.h"
 
-// Apple sadly doesn't provide CGFloat variants of these:
-#if CGFLOAT_IS_DOUBLE
-#define CGFLOATABS(n)	fabs(n)
-#else
-#define CGFLOATABS(n)	fabsf(n)
-#endif
-
 // This is a renamed copy of UKIsDragStart from <http://github.com/uliwitness/UliKit>:
 static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval theTimeout )
 {
@@ -31,7 +24,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 	NSAutoreleasePool	*pool = nil;
 	while( ([expireTime timeIntervalSinceReferenceDate] -[NSDate timeIntervalSinceReferenceDate]) > 0 )
 	{
-		[pool release];
+		[pool drain];
 		pool = [[NSAutoreleasePool alloc] init];
 		
 		NSEvent*	currEvent = [NSApp nextEventMatchingMask: NSLeftMouseUpMask | NSRightMouseUpMask | NSOtherMouseUpMask
@@ -45,7 +38,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 				case NSRightMouseUp:
 				case NSOtherMouseUp:
 				{
-					[pool release];
+					[pool drain];
 					return PXIsDragStartMouseReleased;	// Mouse released within the wait time.
 					break;
 				}
@@ -59,7 +52,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 					CGFloat	yMouseMovement = CGFLOATABS(newPos.y -startPos.y);
 					if( xMouseMovement > 2 or yMouseMovement > 2 )
 					{
-						[pool release];
+						[pool drain];
 						return (xMouseMovement > yMouseMovement) ? PXIsDragStartMouseMovedHorizontally : PXIsDragStartMouseMovedVertically;	// Mouse moved within the wait time, probably a drag!
 					}
 					break;
@@ -69,7 +62,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 		
 	}
 	
-	[pool release];
+	[pool drain];
 	return PXIsDragStartTimedOut;	// If they held the mouse that long, they probably wanna drag.
 }
 
@@ -112,6 +105,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)moveUp:(id)sender
 {
+#pragma unused(sender)
     if([_selectedRows count]>0) {
         NSUInteger firstIndex = [_selectedRows firstIndex];
         
@@ -126,6 +120,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)moveDown:(id)sender
 {
+#pragma unused(sender)
     if([_selectedRows count]>0) {
         NSUInteger lastIndex = [_selectedRows lastIndex];
         
@@ -217,7 +212,6 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)handleMouseDownOutsideCells: (NSEvent*)theEvent
 {
-#pragma unused(theEvent)
     //[[self window] makeFirstResponder: self];
     //
 	if( _allowsEmptySelection )
@@ -243,6 +237,9 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (BOOL)attemptDragWithMouseDown:(NSEvent*)theEvent inCell:(PXListViewCell*)theCell
 {
+    if(!_dragSupported)
+        return NO;
+    
 	PXIsDragStartResult	dragResult = PXIsDragStart( theEvent, 0.0 );
 	if( dragResult != PXIsDragStartMouseReleased /*&& (_verticalMotionCanBeginDrag || dragResult != PXIsDragStartMouseMovedVertically)*/ )	// Was a drag, not a click? Cool!
 	{
@@ -271,7 +268,7 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 	NSPoint		localMouse = [self convertPoint: NSZeroPoint fromView: clickedCell];
     
 	if ([clickedCell isFlipped]) {
-		localMouse = [self convertPoint:CGPointMake(0, NSHeight(clickedCell.frame) * 2) fromView:clickedCell];
+		localMouse = [self convertPoint:NSMakePoint(0, NSHeight(clickedCell.frame) * 2) fromView:clickedCell];
 	}
     
 	localMouse.y += [self documentVisibleRect].origin.y;

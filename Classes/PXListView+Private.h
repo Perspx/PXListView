@@ -6,6 +6,13 @@
 //  Copyright 2010 Alex Rozanski. http://perspx.com. All rights reserved.
 //
 
+// Apple sadly doesn't provide CGFloat variants of these:
+#if CGFLOAT_IS_DOUBLE
+#define CGFLOATABS(n)	fabs(n)
+#else
+#define CGFLOATABS(n)	fabsf(n)
+#endif
+
 // This is a renamed copy of UKIsDragStart from <http://github.com/uliwitness/UliKit>:
 // Possible return values from UKIsDragStart:
 enum
@@ -39,5 +46,7 @@ typedef NSInteger PXIsDragStartResult;
 
 - (void)contentViewBoundsDidChange:(NSNotification*)notification;
 -(void)layoutCellsForResizeEvent;
+
+- (void)windowSizing:(NSNotification *)inNot;
 
 @end
