@@ -85,11 +85,7 @@ NSString * const PXListViewSelectionDidChange = @"PXListViewSelectionDidChange";
 #pragma mark -
 #pragma mark Data Handling
 
-- (id<PXListViewDelegate>)delegate
-{
-    return _delegate;
-}
-
+@synthesize delegate = _delegate;
 - (void)setDelegate:(id<PXListViewDelegate>)delegate
 {
     [[NSNotificationCenter defaultCenter] removeObserver:_delegate
